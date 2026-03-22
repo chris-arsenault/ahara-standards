@@ -1,0 +1,10 @@
+{
+  "name": "@ahara/standards",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./eslint-rules": "./rules/eslint/index.js",
+    "./eslint-rules/*": "./rules/eslint/*.js"
+  }
+}
