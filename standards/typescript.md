@@ -29,7 +29,21 @@ Use ESLint v9+ flat config (`eslint.config.js`).
 npm install -D github:chris-arsenault/ahara-standards
 ```
 
-Import from `@ahara/standards/eslint-rules`. See `rules/eslint/` for the full list.
+Import from `@ahara/standards/eslint-rules`. Each rule and its rationale:
+
+| Rule | Severity | Rationale |
+|------|----------|-----------|
+| `max-jsx-props` | warn | Max 12 props per element. High prop counts mean the component is doing too much — refactor to Parameter Object pattern. |
+| `no-inline-styles` | error | Inline style objects create new references on every render and bypass CSS architecture. Use CSS classes. |
+| `no-direct-fetch` | error | Raw `fetch()` scatters auth handling and error formatting. All HTTP goes through a shared API wrapper. |
+| `no-direct-store-import` | warn | Views should not couple to store internals. Access state through hooks or props. |
+| `no-escape-hatches` | error | `getInternal*` methods expose implementation details. Config fallback defaults mask missing required values. Deprecated stubs should be deleted, not kept for compatibility. |
+| `no-manual-async-state` | warn | Manual `loading`/`error`/`data` state is error-prone and inconsistent. Use shared async hooks. |
+| `no-manual-view-header` | warn | View headers should use a shared component for consistent layout and behavior. |
+| `no-manual-expand-state` | warn | Expand/collapse state should use a shared hook for consistent keyboard and accessibility support. |
+| `no-raw-undefined-union` | warn | `\| undefined` and `?:` in property signatures hide WHY a value can be absent. Named aliases like `Optional<T>` force explicit intent. Catches LLM-added defensive optionality that should be reviewed. |
+| `no-non-vitest-testing` | error | Vitest is the standard test runner. No jest, mocha, or other frameworks. |
+| `no-js-file-extension` | error | TypeScript projects use `.ts`/`.tsx`. JavaScript files indicate missing migration or tooling issues. |
 
 **Mandatory complexity limits (not negotiable):**
 ```js
