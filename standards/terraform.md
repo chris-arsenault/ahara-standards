@@ -57,6 +57,8 @@ Enforced by pre-commit hooks and CI.
 
 All resources use the project prefix: `<prefix>-<resource>`.
 
+When using shared modules from `ahara-tf-patterns`, pass the project prefix explicitly via the `prefix` variable. Modules that take a `hostname` use it only for the FQDN — resource names always come from `prefix`. The prefix must match the deployer role's IAM scope from `platform-control`.
+
 ## Shared Modules
 
 Use the [ahara-tf-patterns](https://github.com/chris-arsenault/ahara-tf-patterns) modules for standard platform integrations:
