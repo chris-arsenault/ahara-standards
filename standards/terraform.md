@@ -57,8 +57,42 @@ Enforced by pre-commit hooks and CI.
 
 All resources use the project prefix: `<prefix>-<resource>`.
 
+## Shared Modules
+
+Use the [ahara-tf-patterns](https://github.com/chris-arsenault/ahara-tf-patterns) modules for standard platform integrations:
+
+```hcl
+source = "git::https://github.com/chris-arsenault/ahara-tf-patterns.git//modules/<module>"
+```
+
+| Module | Purpose |
+|--------|---------|
+| `platform-context` | Reads shared platform resources (VPC, ALB, Cognito, RDS) |
+| `alb-api` | Lambda API(s) behind the shared ALB with JWT auth |
+| `lambda` | Standardized Lambda function (used by alb-api and standalone) |
+| `spa-website` | SPA on CloudFront + S3 with custom domain |
+| `static-website` | Static site on CloudFront + S3 with custom domain |
+| `cognito-app` | Register an app client with the shared Cognito pool |
+
+## Resource Discovery Tags
+
+Platform infrastructure uses tags for cross-project resource discovery. Prefer tag-based lookups over SSM where available.
+
+| Tag | Values | Resource Type | Example |
+|-----|--------|---------------|---------|
+| `vpc:role` | `platform` | VPC | `data "aws_vpc" { filter { name = "tag:vpc:role" values = ["platform"] } }` |
+| `lb:role` | `platform` | ALB | `data "aws_lb" { tags = { "lb:role" = "platform" } }` |
+| `subnet:access` | `private`, `public` | Subnets | `data "aws_subnets" { filter { name = "tag:subnet:access" values = ["private"] } }` |
+| `sg:role` + `sg:scope` | See below | Security Groups | `data "aws_security_group" { filter { ... } }` |
+
+**Security group role/scope pairs:** `lambda`/`platform`, `alb`/`public`, `rds`/`platform`, `nat`/`internet`, `reverse-proxy`/`base`, `wireguard`/`truenas`.
+
+Route53 zone is discovered by name: `data "aws_route53_zone" { name = "ahara.io." }`.
+
+The `platform-context` module handles all of these lookups — use it instead of writing raw data sources.
+
 ## State
 
-- Never use `terraform_remote_state` — read from SSM.
+- Never use `terraform_remote_state` — use tag-based lookups or SSM via `platform-context`.
 - State bucket defaults are baked into `scripts/deploy.sh`.
 - Use `-reconfigure` on `terraform init` to avoid interactive prompts.
