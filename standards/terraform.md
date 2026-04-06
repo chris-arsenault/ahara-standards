@@ -70,8 +70,7 @@ source = "git::https://github.com/chris-arsenault/ahara-tf-patterns.git//modules
 | `platform-context` | Reads shared platform resources (VPC, ALB, Cognito, RDS) |
 | `alb-api` | Lambda API(s) behind the shared ALB with JWT auth |
 | `lambda` | Standardized Lambda function (used by alb-api and standalone) |
-| `spa-website` | SPA on CloudFront + S3 with custom domain |
-| `static-website` | Static site on CloudFront + S3 with custom domain |
+| `website` | Site on CloudFront + S3 with custom domain (set `spa = false` for static sites) |
 | `cognito-app` | Register an app client with the shared Cognito pool |
 
 ## Resource Discovery Tags
