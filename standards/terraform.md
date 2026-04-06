@@ -70,7 +70,7 @@ source = "git::https://github.com/chris-arsenault/ahara-tf-patterns.git//modules
 | `platform-context` | Reads shared platform resources (VPC, ALB, Cognito, RDS) |
 | `alb-api` | Lambda API(s) behind the shared ALB with JWT auth |
 | `lambda` | Standardized Lambda function (used by alb-api and standalone) |
-| `website` | Site on CloudFront + S3 with custom domain (set `spa = false` for static sites) |
+| `website` | Site on CloudFront + S3 with custom domain, optional OG server for dynamic meta tags |
 | `cognito-app` | Register an app client with the shared Cognito pool |
 
 ## Resource Discovery Tags
@@ -84,7 +84,7 @@ Platform infrastructure uses tags for cross-project resource discovery. Prefer t
 | `subnet:access` | `private`, `public` | Subnets | `data "aws_subnets" { filter { name = "tag:subnet:access" values = ["private"] } }` |
 | `sg:role` + `sg:scope` | See below | Security Groups | `data "aws_security_group" { filter { ... } }` |
 
-**Security group role/scope pairs:** `lambda`/`platform`, `alb`/`public`, `rds`/`platform`, `nat`/`internet`, `reverse-proxy`/`base`, `wireguard`/`truenas`.
+**Security group role/scope pairs:** `lambda`/`platform`, `vpn-client`/`platform`, `alb`/`public`, `rds`/`platform`, `nat`/`internet`, `reverse-proxy`/`base`, `wireguard`/`truenas`.
 
 Route53 zone is discovered by name: `data "aws_route53_zone" { name = "ahara.io." }`.
 
