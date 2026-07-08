@@ -1,0 +1,7 @@
+node_modules/
+.env
+.claude/
+.drift-audit/
+drift-output.txt
+*.log
+.DS_Store
