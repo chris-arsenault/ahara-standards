@@ -23,6 +23,8 @@ export default {
   },
 
   create(context) {
+    const sourceCode = context.sourceCode;
+
     return {
       // Rule 1: Ban methods that return internal objects
       MethodDefinition(node) {
@@ -41,7 +43,7 @@ export default {
         }
 
         // Check for @deprecated in comments - if present, method should be deleted
-        const comments = context.getCommentsBefore(node);
+        const comments = sourceCode.getCommentsBefore(node);
         const hasDeprecated = comments.some(c => c.value.includes('@deprecated'));
         if (hasDeprecated) {
           context.report({

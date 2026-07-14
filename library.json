@@ -18,9 +18,9 @@
       "filename": "no-escape-hatches.js",
       "source_project": "svap",
       "created": "2026-02-28",
-      "updated": "2026-02-28",
+      "updated": "2026-07-14",
       "description": "",
-      "checksum": "sha256:b4265d54070ddbb17bc231040b50f9acbf20c2abbc1c6ebfe59c3d72a35c0542",
+      "checksum": "sha256:74c341c7c30880c2267ad4265337fdbdf01684b04aaa4672cef10c8f7477a4ca",
       "path": "rules/eslint/no-escape-hatches.js"
     },
     {
