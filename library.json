@@ -407,6 +407,17 @@
       "description": "",
       "checksum": "sha256:0d09a4aac3436d4d9fb4d3d793ed486a1042a6f2fcf4b6d404bc37b4f61b994a",
       "path": "patterns/view-scaffold.md"
+    },
+    {
+      "id": "021-shared-otel-and-grafana-observability",
+      "type": "adr",
+      "filename": "021-shared-otel-and-grafana-observability.md",
+      "source_project": "ahara-observability",
+      "created": "2026-08-16",
+      "updated": "2026-08-16",
+      "description": "Shared OTEL telemetry path and product-owned Grafana dashboard deployment",
+      "checksum": "sha256:7a79d01affd575ac562ce432aa6753752ce88936a4f3b6653a5b14bda25cd6e9",
+      "path": "adr/021-shared-otel-and-grafana-observability.md"
     }
   ]
 }

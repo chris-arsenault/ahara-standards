@@ -8,7 +8,7 @@ MIT licensed. Published as `@ahara/standards`.
 
 | Path | Purpose |
 |------|---------|
-| [standards/](standards/README.md) | Language and project conventions — TypeScript, Rust, Terraform, git, testing, documentation, project structure, scripts |
+| [standards/](standards/README.md) | Language and project conventions — TypeScript, Rust, Terraform, observability, git, testing, documentation, project structure, scripts |
 | [patterns/](patterns/) | Reusable implementation patterns — store access, API access, async error handling, CSS, view scaffold, expand/collapse, empty states, backend logging |
 | [adr/](adr/) | Architecture Decision Records — the canonical home for every standards trade-off |
 | [rules/eslint/](rules/eslint/) | Custom ESLint rules that enforce the standards, exported from `@ahara/standards/eslint-rules` |
@@ -19,7 +19,7 @@ MIT licensed. Published as `@ahara/standards`.
 
 ## Consuming the standards
 
-Read [standards/README.md](standards/README.md) first — it indexes every convention. Each standard links to the ADRs that justify it and the patterns and lint rules that enforce it.
+Read [standards/README.md](standards/README.md) first — it indexes every convention. Each standard links to the ADRs that justify it and, where applicable, the patterns and lint rules that enforce it.
 
 The ESLint rules are exported from the package. A consuming project imports them into its flat config:
 
